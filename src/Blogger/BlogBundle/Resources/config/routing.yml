@@ -1,0 +1,56 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+BloggerBlogBundle_homepage:
+    pattern:  /
+    defaults: { _controller: BloggerBlogBundle:Page:index }
+    requirements:
+        _method:  GET
+
+
+BloggerBlogBundle_about:
+    pattern:  /about
+    defaults: { _controller: BloggerBlogBundle:Page:about }
+    requirements:
+        _method:  GET
+
+BloggerBlogBundle_contact:
+    pattern:  /contact
+    defaults: { _controller: BloggerBlogBundle:Page:contact }
+    requirements:
+        _method:  GET|POST
+
+BloggerBlogBundle_login:
+    pattern:  /login
+    defaults: { _controller: BloggerBlogBundle:Page:login }
+    requirements:
+        _method:  GET|POST
+
+BloggerBlogBundle_register:
+    pattern:  /register
+    defaults: { _controller: BloggerBlogBundle:Page:register }
+    requirements:
+        _method:  GET|POST
+
+
+BloggerBlogBundle_blog_show:
+    pattern:  /{id}
+    defaults: { _controller: BloggerBlogBundle:Blog:show }
+    requirements:
+        _method:  GET
+        id: \d+
+
+BloggerBlogBundle_comment_create:
+    pattern:  /comment/{blog_id}
+    defaults: { _controller: BloggerBlogBundle:Comment:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+
+
+
+BloggerBlogBundle_emailsend:
+    pattern:  /cont
+    defaults: { _controller: BloggerBlogBundle:Page:emailSend }
+    requirements:
+        _method:  GET|POST

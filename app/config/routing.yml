@@ -1,0 +1,12 @@
+blogger_blog:
+    resource: "@BloggerBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+
+tasks:
+    resource: "@BloggerBlogBundle/Controller/TasksController.php"
+    type: annotation

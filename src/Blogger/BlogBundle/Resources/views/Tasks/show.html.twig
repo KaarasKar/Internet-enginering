@@ -1,0 +1,37 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Task</h1>
+
+    <table class="record_properties">
+        <tbody>
+
+            <tr>
+                <th>Task</th>
+                <td>{{ entity.task }}</td>
+            </tr>
+            <tr>
+                <th>Complete</th>
+                <td>{{ entity.complete }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('tasks') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('tasks_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

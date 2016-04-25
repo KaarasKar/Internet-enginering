@@ -1,0 +1,53 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Tasks list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Complete</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.task }}</td>
+                <td>{{ entity.complete }}</td>
+                <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('tasks_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('tasks_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+        <hr />
+        </tbody>
+
+    </table>
+    <hr />
+        <ul>
+        <li>
+            <a href="{{ path('tasks_new') }}">
+                Create a new task
+            </a>
+        </li>
+
+            <hr />
+            <div >
+                <a href="{{ path('fos_user_security_logout') }}" onClick="">Logout</a>
+            </div>
+
+        </ul>
+    {% endblock %}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="blog">
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
+    <title>{% block title %}Blog{% endblock %} - Blog</title>
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script type="text/javascript"></script>
+    <![endif]-->
+
+    {% block stylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+        {% stylesheets
+        'css/*'
+        %}
+        <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+
+
+<body >
+
+<section id="wrapper">
+    <header id="header">
+        <div class="top">
+            <div id="time"></div>
+            {% block navigation %}
+                <nav>
+                    <ul class="navigation">
+                        <li><a href="{{ path('BloggerBlogBundle_homepage') }}">Home</a></li>
+                        <li><a href="{{ path('BloggerBlogBundle_about') }}">About</a></li>
+                        <li><a href="{{ path('BloggerBlogBundle_login') }}">Login</a></li>
+                        <li><a href="{{ path('BloggerBlogBundle_contact') }}">Contact</a></li>
+                    </ul>
+                </nav>
+            {% endblock %}
+        </div>
+
+        <hgroup>
+            <h2>{% block blog_title %}<a href="{{ path('BloggerBlogBundle_homepage') }}">Welcome in blog</a>{% endblock %}</h2>
+            <h3>{% block blog_tagline %}<a href="{{ path('BloggerBlogBundle_homepage') }}">creating a blog in Symfony2 and AngularJS</a>{% endblock %}</h3>
+        </hgroup>
+    </header>
+
+    <section class="main-col">
+        {% block body %}
+            <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+             </div>
+
+
+        {% endblock %}
+    </section>
+    <aside class="sidebar">
+
+        {% block sidebar %}{% endblock %}
+    </aside>
+
+    <div id="footer">
+        {% block footer %}
+
+        {% endblock %}
+    </div>
+</section>
+</body>
+
+
+
+</html>
