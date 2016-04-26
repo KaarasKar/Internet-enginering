@@ -1,0 +1,53 @@
+<?php
+// src/AppBundle/Entity/User.php
+
+namespace Blogger\BlogBundle\Entity;
+
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="tasks")
+ * @ORM\HasLifecycleCallbacks()
+ *
+ */
+class Tasks
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
+     * @ORM\JoinColumn(name="id_my_user", referencedColumnName="id")
+     */
+    protected $user;
+
+
+    /**
+     * @var string
+     * @ORM\Column(name="task", type="string", length=255)
+     */
+    protected $task;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="complete", type="boolean")
+     */
+    private $complete;
+
+    /**
+     * @var \DataTime
+     * @ORM\Column(name="created", type="datetime")
+     */
+    protected $created;
+
+
+
+}

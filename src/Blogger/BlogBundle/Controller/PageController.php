@@ -55,20 +55,20 @@ class PageController extends Controller
         $result = new stdClass();
         $result->result=false;
 
-        $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Contact enquiry from Blog')
-                    ->setFrom('enquiries@blog.co.uk')
-                    ->setTo($this->container->getParameter('blogger_blog.emails.contact_email'))
-                    ->setBody($this->renderView('BloggerBlogBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
-                $result->result=true;
-            }
+            $message = \Swift_Message::newInstance()
+                ->setSubject($request->request->get('content'))
+                ->setFrom($request->request->get('senderEmail'))
+                ->setTo($this->container->getParameter('blogger_blog.emails.contact_email'))
+                ->setBody($this->renderView('BloggerBlogBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
+            $result->result=true;
+        }
 
-        $result->requestData=$json;
+   //     $result->requestData=$json;
+        $form->requestData=$json;
         $json->content;
-        return new JsonResponse($result);
+        return new JsonResponse($form);
     }
 
 
